@@ -2,7 +2,9 @@ var deerResume = angular.module('deerResume', ['ngRoute', 'wiz.markdown', 'ngNot
 
 //var baseurl = 'http://cvbox.sinaapp.com/'; // 使用SAE托管简历数据
 //var baseurl = 'data.php'; // 使用本地文件托管简历数据，本地模式下，不支持在线编辑
-var baseurl = 'data.json?v=1.0.0'; // 使用本地文件托管简历数据，本地模式下，不支持在线编辑
+// var baseurl = 'data.json?v=1.0.0'; // 使用本地文件托管简历数据，本地模式下，不支持在线编辑
+// var baseurl = 'http://10.0.42.111:8009';
+var baseurl = 'http://node.darrenzzy.cn';
 var pwdurl = 'pwd.json?v=1.0.0';
 
 
@@ -36,7 +38,7 @@ deerResume.controller('resumeCtrl', function ($scope, $http, storage) {
 
 
 
-    $http.get(baseurl).success(function (data) {
+    $http.get(baseurl +'/get_data?name=darren').success(function (data) {
         console.log(data,1111)
 
         $scope.resume = data;
@@ -97,9 +99,9 @@ deerResume.controller('adminCtrl', function ($scope, $http, storage, ngNotify) {
 
     var url = '';
     if ($scope.vpass && $scope.vpass.length > 3)
-        url  = baseurl + "?a=show&domain=" + encodeURIComponent(window.location) + "&vpass=" + encodeURIComponent($scope.vpass);
+        url  = baseurl + "/get_data?name=darren&domain=" + encodeURIComponent(window.location) + "&vpass=" + encodeURIComponent($scope.vpass);
     else
-        url = baseurl + "?a=show&domain=" + encodeURIComponent(window.location);
+        url = baseurl + "/get_data?name=darren&domain=" + encodeURIComponent(window.location);
 
     $http.get(url).success(function (data) {
         var oldcontent = $scope.resume.content;
@@ -113,8 +115,10 @@ deerResume.controller('adminCtrl', function ($scope, $http, storage, ngNotify) {
         $http
         ({
             method: 'POST',
-            url: baseurl + "?a=update&domain=" + encodeURIComponent(window.location),
-            data: $.param({'title': item.title, 'subtitle': item.subtitle, 'content': item.content, 'view_password': item.view_password, 'admin_password': item.admin_password}),
+            url: baseurl + "/push_data",
+            
+            data: $.param({ 'name': 'darren','title': item.title,'show':1, 'subtitle': item.subtitle, 'content': item.content, 'view_password': item.view_password, 'admin_password': item.admin_password}),
+            // headers: { 'Content-Type': 'application/json' }
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(
             function (data) {
