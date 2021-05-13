@@ -31,7 +31,7 @@ DeerResume
 暂不支持的功能
 - 不能在线MarkDown编辑器+实时预览
 
-[此项目示例](http://resumedemo.wiliam.me/)。
+[此项目示例](http://resume.darrenzzy.cn/)。
 初始密码:12345
 
 # 3.FAQ
