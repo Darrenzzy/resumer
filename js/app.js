@@ -4,7 +4,7 @@ document.write('<meta http-equiv="Content-Security-Policy" content="upgrade-inse
 //var baseurl = 'data.php'; // 使用本地文件托管简历数据，本地模式下，不支持在线编辑
 // var baseurl = 'data.json?v=1.0.0'; // 使用本地文件托管简历数据，本地模式下，不支持在线编辑
 // var baseurl = 'http://10.0.42.111:8009';
-var baseurl = 'http://node.darrenzzy.cn';
+var baseurl = 'https://node.darrenzzy.cn';
 var pwdurl = 'pwd.json?v=1.0.0';
 
 
